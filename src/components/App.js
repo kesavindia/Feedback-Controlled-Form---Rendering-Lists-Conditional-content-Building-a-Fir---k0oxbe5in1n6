@@ -5,7 +5,7 @@ const App = () => {
   const [rating, setRating] = useState(5);
   const [comment, setComment] = useState('');
   const [commentError, setCommentError] = useState(false);
-  function handleChange(){
+  function handleChange(e){
     setComment(e.target.value)
     if(e.target.value.length <5){
       setCommentError(true);
