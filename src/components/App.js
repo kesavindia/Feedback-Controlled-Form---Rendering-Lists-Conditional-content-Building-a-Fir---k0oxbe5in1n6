@@ -2,9 +2,21 @@ import React, { useState } from 'react'
 import '../styles/App.css';
 
 const App = () => {
-  const [rating, setRating] = useState();
-  const [comment, setComment] = useState();
-  const [commentError, setCommentError] = useState();
+  const [rating, setRating] = useState(5);
+  const [comment, setComment] = useState('');
+  const [commentError, setCommentError] = useState(false);
+  function handleChange(){
+    setComment(e.target.value)
+    if(e.target.value.length <5){
+      setCommentError(true);
+    }else{
+      setCommentError(false);
+    }
+  }
+  function handleClick(e){
+    // console.log(rating)
+    e.preventDefault()
+  }
 
   return (
     <div id="main">
@@ -16,17 +28,21 @@ const App = () => {
             min="1"
             max="10"
             id="rating"
+            value={rating}
+            onChange={(e)=>setRating(parseInt(e.target.value))}
           />
           <span className='rating'>rating</span>
         </div>
         <div>
           <label htmlFor='comment'>Comment: </label>
           <textarea 
-            id='comment'
+            id='comment' value={comment} onChange={handleChange}
           />
-          <p style={{ color: 'red' }} className="comment-error">Comment must be atleast 5 characters.</p>
+          {
+            commentError && ( <p style={{ color: 'red' }} className="comment-error">Comment must be atleast 5 characters.</p>)
+          }         
         </div>
-        <button type='submit'>Submit</button>
+        <button type='submit' onClick={handleClick}>Submit</button>
       </form>
     </div>
   )
