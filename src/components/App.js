@@ -17,7 +17,6 @@ const App = () => {
     // console.log(rating)
     e.preventDefault()
   }
-
   return (
     <div id="main">
       <form>
@@ -31,7 +30,7 @@ const App = () => {
             value={rating}
             onChange={(e)=>setRating(parseInt(e.target.value))}
           />
-          <span className='rating'>rating</span>
+          <span className='rating'>{rating}</span>
         </div>
         <div>
           <label htmlFor='comment'>Comment: </label>
@@ -39,7 +38,7 @@ const App = () => {
             id='comment' value={comment} onChange={handleChange}
           />
           {
-            commentError && ( <p style={{ color: 'red' }} className="comment-error">Comment must be atleast 5 characters.</p>)
+            commentError && (<p style={{ color: 'red' }} className="comment-error">Comment must be atleast 5 characters.</p>)
           }         
         </div>
         <button type='submit' onClick={handleClick}>Submit</button>
@@ -47,6 +46,5 @@ const App = () => {
     </div>
   )
 }
-
 
 export default App;
